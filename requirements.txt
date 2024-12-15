@@ -1,0 +1,6 @@
+apache-airflow-providers-snowflake
+apache-airflow-providers-google
+gspread
+gspread-dataframe
+Authlib
+boto3
