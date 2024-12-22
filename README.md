@@ -34,7 +34,7 @@ In this project, we will be working with multiple API endpoints. Each endpoint w
 
 ### Setup Steps
 In your project folder:
-1. Clone the NBA data extraction [repository]() and follow installation instruction.
+1. Clone the NBA data extraction [repo](https://github.com/mbo0000/nba_e2e_extractor_package) and follow installation instruction.
 2. Clone the airflow repository in the main project directory:
     ```sh
     git clone https://github.com/mbo0000/nba_e2e_airflow.git
@@ -78,7 +78,7 @@ Each DAG will have the following tasks in order:
                             f' --schema {SOURCE_SCHEMA}'
         )
     ```
-    Extract and load component is a dockerized python container locally hosted. Visit [this repo]() for more information.
+    Extract and load component is a dockerized python container locally hosted.
 
 2. Once data landed in the staging area, update target table schema if there are new schema changes. If target table does not yet exist, create the target table.
     ```
