@@ -7,10 +7,11 @@ from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 from pendulum import datetime, duration
 from datetime import timedelta
 
-SOURCE_DATABASE = 'STAGING'
-SOURCE_SCHEMA   = 'NBA_DUMP'
-TARGET_DATABASE = 'RAW'
-TARGET_SCHEMA   = 'PC_DUMP'
+SOURCE_DATABASE     = 'STAGING'
+SOURCE_SCHEMA       = 'NBA_DUMP'
+TARGET_DATABASE     = 'RAW'
+TARGET_SCHEMA       = 'PC_DUMP'
+EXTRACTOR_CONTAINER = 'nba_extractor'
 
 def _create_table(database, schema, table, columns, connection, **kwargs):
     '''
@@ -179,7 +180,7 @@ def generate_dag(dag_id, entity, case_field, entity_id, trigger_dag_id, schedule
         extract_load = BashOperator(
             task_id             = 'extract_load'
             , execution_timeout =timedelta(seconds=3600)
-            , bash_command      = f'docker exec extractor_package-app-1 python main.py '\
+            , bash_command      = f'docker exec {EXTRACTOR_CONTAINER} python main.py '\
                                 f' --entity {entity}'\
                                 f' --database {SOURCE_DATABASE}'\
                                 f' --schema {SOURCE_SCHEMA}'\
